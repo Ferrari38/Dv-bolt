@@ -1,4 +1,93 @@
-<script>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>คำนวณรายได้ประจำวัน</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 24px;
+      color: #003300;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #004d00;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, button, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      background: #e6ffe6;
+      padding: 15px;
+      border-radius: 5px;
+      color: #006600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>คำนวณรายได้ประจำวัน</h2>
+
+    <label>วันที่:</label>
+    <input type="date" id="date" />
+
+    <h3>รายรับ</h3>
+    <label>รายได้จาก GRAB (บาท):</label>
+    <input type="number" id="grab" />
+
+    <label>รายได้จาก BOLT (บาท):</label>
+    <input type="number" id="bolt" />
+
+    <label>ทิป (บาท):</label>
+    <input type="number" id="tip" />
+
+    <label>รายรับอื่นๆ (บาท):</label>
+    <input type="number" id="extraIncome" />
+
+    <h3>รายจ่าย</h3>
+    <label>ค่าน้ำมัน (บาท):</label>
+    <input type="number" id="oil" />
+
+    <label>รายจ่ายอื่นๆ (บาท):</label>
+    <input type="number" id="otherExpense" />
+
+    <h3>ระยะทางที่ใช้</h3>
+    <label>เริ่มงาน (กม.):</label>
+    <input type="number" id="startKm" />
+
+    <label>เลิกงาน (กม.):</label>
+    <input type="number" id="endKm" />
+
+    <button onclick="calculate()">คำนวณ</button>
+    <button onclick="resetForm()">ล้างข้อมูล</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  
+  <script>
   function calculate() {
     const date = document.getElementById('date').value;
     const grab = parseFloat(document.getElementById('grab').value) || 0;
@@ -54,4 +143,12 @@
 
     document.getElementById('result').innerHTML = resultHTML;
   }
-</script>
+
+  function resetForm() {
+    document.querySelectorAll('input').forEach(input => input.value = '');
+    document.getElementById('result').innerHTML = '';
+  }
+  </script>
+
+</body>
+</html>
